@@ -3,9 +3,7 @@ package com.myorg;
 import software.constructs.Construct;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import software.amazon.awscdk.CfnParameter;
