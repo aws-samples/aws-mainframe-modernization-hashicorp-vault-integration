@@ -4,6 +4,7 @@ import boto3
 import requests
 from pprint import pprint
 
+# This program does the HashiCorp Vault synchronization with AWS Secrets Manager
 
 region = os.environ['AWS_REGION']
 kms_key_arn = os.environ['kms_key_arn']
