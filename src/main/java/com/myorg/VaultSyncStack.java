@@ -42,14 +42,12 @@ public class VaultSyncStack extends Stack {
                 System.out.println(accountNumber);
                 System.out.println(region);
 
-           
-
-                // KMS
+                // AWS KMS
                 Key kmsKey = Key.Builder.create(this,"replicate-kms-key")
                                         .alias("replicate-vault-key")
                                         .build();
                 
-                //SNS topics
+                //AWS SNS topics
 
                 Topic successTopic = Topic.Builder.create(this,"successVaultReplication")
                                                 .topicName("successVaultReplication")
@@ -61,7 +59,7 @@ public class VaultSyncStack extends Stack {
                 successTopic.addSubscription(new EmailSubscription(emailAddress.getValueAsString()));
                 failedTopic.addSubscription(new EmailSubscription(emailAddress.getValueAsString()));
 
-                //Env vars for the lambda
+                //Env vars for the AWS lambda
                 Map<String, String> environmentVariables = new HashMap<>();
                 environmentVariables.put("failedTopicArn",failedTopic.getTopicArn());
                 environmentVariables.put("successTopicArn",successTopic.getTopicArn());
@@ -73,7 +71,7 @@ public class VaultSyncStack extends Stack {
                 environmentVariables.put("vault_port",vaultPort.getValueAsString());
                 environmentVariables.put("vault_token",token.getValueAsString());
 
-                //IAM policy statements
+                //AWS IAM policy statements
                 PolicyStatement statement1 = PolicyStatement.Builder.create()
                                             .effect(Effect.ALLOW)
                                             .actions(Arrays.asList(new String[]{"logs:CreateLogGroup"}))
@@ -101,19 +99,19 @@ public class VaultSyncStack extends Stack {
                                             .build();      
 
                                     
-                //IAM policy document
+                //AWS IAM policy document
                 PolicyDocument policyDocument = PolicyDocument.Builder.create()
                                                 .statements(Arrays.asList(new PolicyStatement[]{statement1,statement2,statement3,statement4}))
                                                 .build();
     
 
-                //IAM role
+                //AWS IAM role
                 Role vaultReplicaRole = Role.Builder.create(this, "replicate-lambda-role")
                                         .roleName("replicate-lambda-role")
                                         .assumedBy(new ServicePrincipal("lambda.amazonaws.com")).build();
                                         
 
-                //Lambda
+                //AWS Lambda
                 Function replicateVault = Function.Builder.create(this,"replicate-vault")
                                                 .runtime(Runtime.PYTHON_3_7)
                                                 .code(Code.fromAsset("lambda"))
