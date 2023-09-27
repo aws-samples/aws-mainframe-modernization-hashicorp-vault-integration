@@ -29,7 +29,7 @@ snsClient = boto3.client('sns')
 def getExistingSecretsFromVault()->dict:
         headers = {'X-Vault-Token':vault_token}
         result = dict()
-        url = f'http://{vault_ip}:{vault_port}/v1/{secretPrefix}/data/{prefix}'
+        url = f'https://{vault_ip}:{vault_port}/v1/{secretPrefix}/data/{prefix}'
         r = requests.get(url, headers=headers)
         if r.ok:
             resp_dict = r.json()
