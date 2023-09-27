@@ -69,7 +69,6 @@ def createUpdateSecretsInSM(existing_Vault_secrets_dt:dict):
     return
 
 def createSecretInSM(secrets_dt:dict)->str:
-    print('here4')
     secretStringJson=secrets_dt.copy()
     version=str(secretStringJson.pop('version'))
     secretStringJson=json.dumps(secretStringJson)
