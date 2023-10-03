@@ -4,9 +4,9 @@ This pattern explains how to integrate HashiCorp Vault with AWS Mainframe Modern
 AWS Services that are used in this solutions are:
 
 - [AWS Mainframe Modernization Service](https://aws.amazon.com/mainframe-modernization/)
-- [AWS Secrets Manager] (https://aws.amazon.com/secrets-manager)
-- [AWS Lambda] (https://aws.amazon.com/lambda/)
-- [Amazon Simple Notification Service] (https://aws.amazon.com/sns/)
+- [AWS Secrets Manager](https://aws.amazon.com/secrets-manager)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [Amazon Simple Notification Service](https://aws.amazon.com/sns/)
 
 ## Security
 
